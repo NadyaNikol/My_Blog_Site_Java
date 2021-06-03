@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Блог сайта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <div th:each="el : ${post}" class="alert alert-info mt-2">
+        <h3 th:text="${el.anons}"></h3>
+        <h5 th:text="${el.title}"></h5>
+        <!--        <p th:text="${el.anons}"></p>-->
+        <p th:text="${el.full_text}"></p>
+        <div th:if="${#httpServletRequest.getRemoteUser()=='admin'}">
+            <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+            <form th:action="'/blog/' + ${el.id} + '/remove'" method="post"><br>
+                <button class="btn btn-warning" type="submit">Удалить</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

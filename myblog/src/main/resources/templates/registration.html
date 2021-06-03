@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Блог сайта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<h5>&nbsp;&nbsp;Добавление нового пользователя</h5>
+<div style="margin: 5% 40%;">
+    <div th:if="${param.error}" style="color: red; margin-bottom: 20px;">
+        Invalid username and password.
+    </div>
+    <form action="/registration" method="post">
+        <div class="form-group"><label> User Name: <input class="form-control" type="text" name="username"/> </label>
+        </div>
+        <div class="form-group"><label> Password: <input class="form-control" type="password" name="password"/> </label>
+        </div>
+        <div><input class="btn btn-success" type="submit" value="Добавить"/></div>
+    </form>
+    <br>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
